@@ -1,0 +1,20 @@
+# NOTA: Em sistemas modernos, use o comando "docker compose" (com espaço),
+# em vez do antigo "docker-compose" (com hífen).
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: analista-financeiro-backend
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      # Corrigido: Aponta para a subpasta correta onde o Dockerfile se encontra
+      context: ./frontend/meu-analista-financeiro-ui
+    container_name: analista-financeiro-frontend
+    ports:
+      - "5500:80"
+    depends_on:
+      - backend
+
